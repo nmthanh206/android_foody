@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".SignupFragment">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/food_logo"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <EditText
+        android:id="@+id/eUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:layout_marginTop="30dp"
+        android:hint="User name"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/ePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/eUserName"
+        android:layout_marginTop="50dp"
+        android:hint="Password"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/eRePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ePassword"
+        android:layout_marginTop="50dp"
+        android:hint="Retype password"
+        android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/eRePassword"
+        android:layout_marginTop="35dp"
+        android:text="Sign up" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSignUp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnSignUp"
+            android:layout_marginTop="0dp"
+            android:text="Already have account?"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/viewSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="Log in"
+            android:textColor="#2196F3"
+            android:textSize="15dp"
+            android:textStyle="bold"
+
+
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>
