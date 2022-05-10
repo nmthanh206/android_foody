@@ -31,7 +31,11 @@
         android:layout_below="@+id/eUserName"
         android:layout_marginTop="20dp"
         android:hint="Password"
-        android:minHeight="48dp" />
+        android:inputType="textPassword"
+        android:lines="1"
+        android:maxLines="1"
+        android:minHeight="48dp"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/eRePassword"
@@ -40,7 +44,11 @@
         android:layout_below="@+id/ePassword"
         android:layout_marginTop="20dp"
         android:hint="Retype password"
-        android:minHeight="48dp" />
+        android:inputType="textPassword"
+        android:lines="1"
+        android:maxLines="1"
+        android:minHeight="48dp"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/ePhone"
@@ -50,6 +58,7 @@
         android:layout_marginTop="20dp"
         android:hint="Phone number"
         android:minHeight="48dp" />
+
     <EditText
         android:id="@+id/eAddress"
         android:layout_width="match_parent"
@@ -67,14 +76,14 @@
         android:layout_marginTop="20dp"
         android:text="Sign up" />
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnSignUp"
         android:layout_marginTop="10dp"
-        android:orientation="vertical"
         android:gravity="center"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
