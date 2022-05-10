@@ -1,6 +1,7 @@
 package hcmute.spkt.foody_g7;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 
 
@@ -34,6 +35,7 @@ public class SignInFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Database db;
 
     public SignInFragment() {
         // Required empty public constructor
@@ -93,9 +95,9 @@ public class SignInFragment extends Fragment {
                     Toast.makeText(getActivity(), "UserName or Password cant be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                Boolean isValid= authenticateUser(userName.getText().toString(),password.getText().toString());
 
-
-                if(userName.getText().toString().equals("group7") && password.getText().toString().equals("group7")){
+                if(isValid){
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
                 }else{
@@ -116,6 +118,15 @@ public class SignInFragment extends Fragment {
     }
 
 
+    private Boolean authenticateUser(String username, String password){
+
+        Cursor cursor =db.getData("SELECT * FROM User WHERE username='"+username+"' AND password='"+password+"'");
+        if(cursor.getCount()>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -123,6 +134,7 @@ public class SignInFragment extends Fragment {
         fragmentTransaction.commit();
 
     }
+
 
 
 }

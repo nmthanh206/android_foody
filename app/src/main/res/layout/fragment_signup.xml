@@ -10,8 +10,8 @@
     <ImageView
         android:id="@+id/logo"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/food_logo"
         app:layout_constraintLeft_toLeftOf="parent" />
 
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/logo"
         android:layout_marginTop="30dp"
-        android:hint="User name"
+        android:hint="Username"
         android:minHeight="48dp" />
 
     <EditText
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/eUserName"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:hint="Password"
         android:minHeight="48dp" />
 
@@ -38,16 +38,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ePassword"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:hint="Retype password"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/ePhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/eRePassword"
+        android:layout_marginTop="20dp"
+        android:hint="Phone number"
+        android:minHeight="48dp" />
+    <EditText
+        android:id="@+id/eAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ePhone"
+        android:layout_marginTop="20dp"
+        android:hint="Address"
         android:minHeight="48dp" />
 
     <Button
         android:id="@+id/btnSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/eRePassword"
-        android:layout_marginTop="35dp"
+        android:layout_below="@+id/eAddress"
+        android:layout_marginTop="20dp"
         android:text="Sign up" />
 
     <LinearLayout

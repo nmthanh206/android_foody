@@ -1,5 +1,6 @@
 package hcmute.spkt.foody_g7;
 
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,7 +31,8 @@ public class SignupFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private Database db;
+    private Users  user;
     public SignupFragment() {
         // Required empty public constructor
     }
@@ -60,6 +62,7 @@ public class SignupFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -75,26 +78,37 @@ public class SignupFragment extends Fragment {
         EditText userName = (EditText) view.findViewById(R.id.eUserName);
         EditText password = (EditText) view.findViewById(R.id.ePassword);
         EditText rePassword = (EditText) view.findViewById(R.id.eRePassword);
+        EditText phone = (EditText) view.findViewById(R.id.ePhone);
+        EditText address= (EditText) view.findViewById(R.id.eAddress);
         Button button = (Button) view.findViewById(R.id.btnSignUp);
         View viewSignIn = view.findViewById(R.id.viewSignIn);
+        db = new Database(getActivity());
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (userName.getText().toString().matches("") ||password.getText().toString().matches("")) {
-                    Toast.makeText(getActivity(), "UserName or Password or RePassword cant be empty", Toast.LENGTH_SHORT).show();
+
+                if (userName.getText().toString().matches("")
+                        ||password.getText().toString().matches("")
+                        ||phone.getText().toString().matches("")
+                        ||address.getText().toString().matches("")) {
+                    Toast.makeText(getActivity(), "All fields are required", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-
                 if(!password.getText().toString().equals(rePassword.getText().toString())){
-                    Toast.makeText(getActivity(), "Password and Repassword does not match", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Password and confirm password does not match", Toast.LENGTH_LONG).show();
                     return;
+                }
+                Boolean isExist=checkUserName(userName.getText().toString());
+                if(isExist){
+                    Toast.makeText(getActivity(), "Username have existed, please choose another one", Toast.LENGTH_LONG).show();
                 }else{
+                    user=new Users(userName.getText().toString(),rePassword.getText().toString(),phone.getText().toString(),address.getText().toString());
+                    createUser(user);
                     Toast.makeText(getActivity(), "Successful account registration", Toast.LENGTH_LONG).show();
                     replaceFragment(new SignInFragment());
 
                 }
-
 
             }
         });
@@ -105,7 +119,19 @@ public class SignupFragment extends Fragment {
             }
         });
     }
+    private Boolean checkUserName(String username){
 
+        Cursor cursor =db.getData("SELECT * FROM User WHERE username='"+username+"'");
+        if(cursor.getCount()>0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+    private void createUser (Users user){
+        String query="INSERT INTO Users VALUES(null,'"+user.getUsername()+"','"+user.getPassword()+"','"+user.getPhone()+"','"+user.getAddress()+"')";
+        db.queryData(query);
+    }
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
