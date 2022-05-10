@@ -41,6 +41,8 @@
                 android:background="#fff"
                 android:hint="What would you like to eat?"
                 android:minHeight="48dp"
+                android:inputType="text"
+                android:imeOptions="actionSearch"
                 android:paddingHorizontal="40dp"
                 android:paddingVertical="10dp"
                 android:textColorHint="#757575"

@@ -12,10 +12,13 @@ import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,6 +27,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -119,6 +123,24 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         viewHotpot.setOnClickListener(this);
         viewForeign.setOnClickListener(this);
 
+
+
+      EditText editText = (EditText) view.findViewById(R.id.etSearch);
+      editText.setOnKeyListener(new OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    listFood.removeAllViews();
+                    foods = new ArrayList<FoodItem>(State.foods);
+                    foods.removeIf(p -> !p.getName().toLowerCase().contains(editText.getText().toString().toLowerCase()));
+                    LoadData();
+                    return true;
+                }
+                return false;
+            }
+        });
+
 //        listFood.removeAllViews();
 
     }
@@ -128,7 +150,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         listFood.removeAllViews();
-        foods = new ArrayList<FoodItem>(State.foods);;
+        foods = new ArrayList<FoodItem>(State.foods);
         switch (v.getId()) {
             case R.id.all: {
 //                foods = new ArrayList<FoodItem>(State.foods);;
