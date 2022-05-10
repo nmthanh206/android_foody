@@ -62,7 +62,7 @@ public class SignupFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
+        db = new Database(getActivity());
     }
 
     @Override
@@ -82,7 +82,7 @@ public class SignupFragment extends Fragment {
         EditText address= (EditText) view.findViewById(R.id.eAddress);
         Button button = (Button) view.findViewById(R.id.btnSignUp);
         View viewSignIn = view.findViewById(R.id.viewSignIn);
-        db = new Database(getActivity());
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

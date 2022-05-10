@@ -66,7 +66,7 @@ public class SignInFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
+        db = new Database(getActivity());
 
     }
 
@@ -88,6 +88,7 @@ public class SignInFragment extends Fragment {
         password = (EditText) view.findViewById(R.id.eUserName);
         Button button = (Button) view.findViewById(R.id.btnSignIn);
         View viewSignUp = view.findViewById(R.id.viewSignUp);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
