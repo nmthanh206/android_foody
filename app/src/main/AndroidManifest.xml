@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Foody_g7">
         <activity
-            android:name="hcmute.spkt.foody_g7.StartApp"
+            android:name="hcmute.spkt.foody_g7.MainActivity"
             android:exported="false" />
         <activity
-            android:name="hcmute.spkt.foody_g7.MainActivity"
+            android:name="hcmute.spkt.foody_g7.StartApp"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

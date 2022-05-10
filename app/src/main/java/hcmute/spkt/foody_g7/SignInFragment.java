@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,8 +85,8 @@ public class SignInFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        userName = (EditText) view.findViewById(R.id.ePassword);
-        password = (EditText) view.findViewById(R.id.eUserName);
+        userName = (EditText) view.findViewById(R.id.eUserName);
+        password = (EditText) view.findViewById(R.id.ePassword);
         Button button = (Button) view.findViewById(R.id.btnSignIn);
         View viewSignUp = view.findViewById(R.id.viewSignUp);
 
@@ -121,7 +122,9 @@ public class SignInFragment extends Fragment {
 
     private Boolean authenticateUser(String username, String password){
 
-        Cursor cursor =db.getData("SELECT * FROM User WHERE username='"+username+"' AND password='"+password+"'");
+        String slqQueryString="SELECT * FROM Users WHERE username='"+username+"' AND password='"+password+"' ";
+        Log.d("myTag", slqQueryString);
+        Cursor cursor =db.getData(slqQueryString);
         if(cursor.getCount()>0){
             return true;
         }else {

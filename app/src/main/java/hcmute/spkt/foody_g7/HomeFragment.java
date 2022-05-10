@@ -37,6 +37,15 @@ import java.util.Locale;
 public class HomeFragment extends Fragment implements View.OnClickListener {
     List<FoodItem> foods;
     LinearLayout listFood;
+    View viewAll;
+    View viewRice;
+    View viewDrinks;
+    View viewHealthy;
+    View viewFast;
+    View viewSnacks;
+    View viewHotpot;
+    View viewForeign;
+    EditText editText;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -96,24 +105,25 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         listFood = (LinearLayout) view.findViewById(R.id.listFood);
-        String[] arrCategory = {"All", "Rice", "Drink", "Healthy","Fast","Snacks","Hotpot","Foreign"};
+        String[] arrCategory = {"All", "Rice", "Drink", "Healthy", "Fast", "Snacks", "Hotpot", "Foreign"};
         FoodItem foodItem;
         for (int i = 0; i < 30; i++) {
-            foods.add(new FoodItem(R.drawable.dishes_1, "Quan "+String.valueOf(i+1), (double)Util.getRandomNumber(50,500), arrCategory[Util.getRandomNumber(1,arrCategory.length-1)]));
+            foods.add(new FoodItem(R.drawable.dishes_1, "Quan " + String.valueOf(i + 1), (double) Util.getRandomNumber(50, 500), arrCategory[Util.getRandomNumber(1, arrCategory.length - 1)]));
         }
 
-        State.foods = new ArrayList<FoodItem>(foods);;
+        State.foods = new ArrayList<FoodItem>(foods);
+        ;
         LoadData();
 
 
-        View viewAll = view.findViewById(R.id.all);
-        View viewRice = view.findViewById(R.id.rice);
-        View viewDrinks = view.findViewById(R.id.drinks);
-        View viewHealthy = view.findViewById(R.id.healthy);
-        View viewFast = view.findViewById(R.id.fast);
-        View viewSnacks = view.findViewById(R.id.snacks);
-        View viewHotpot = view.findViewById(R.id.hotpot);
-        View viewForeign = view.findViewById(R.id.foreign);
+        viewAll = view.findViewById(R.id.all);
+        viewRice = view.findViewById(R.id.rice);
+        viewDrinks = view.findViewById(R.id.drinks);
+        viewHealthy = view.findViewById(R.id.healthy);
+        viewFast = view.findViewById(R.id.fast);
+        viewSnacks = view.findViewById(R.id.snacks);
+        viewHotpot = view.findViewById(R.id.hotpot);
+        viewForeign = view.findViewById(R.id.foreign);
         viewAll.setOnClickListener(this);
         viewRice.setOnClickListener(this);
         viewDrinks.setOnClickListener(this);
@@ -124,9 +134,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         viewForeign.setOnClickListener(this);
 
 
-
-      EditText editText = (EditText) view.findViewById(R.id.etSearch);
-      editText.setOnKeyListener(new OnKeyListener() {
+        editText = (EditText) view.findViewById(R.id.etSearch);
+        editText.setOnKeyListener(new OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
 
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
@@ -151,6 +160,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         listFood.removeAllViews();
         foods = new ArrayList<FoodItem>(State.foods);
+        if (v.getId() != R.id.all)
+            foods.removeIf(p -> !editText.getText().toString().matches("") && !p.getName().toLowerCase().contains(editText.getText().toString().toLowerCase()));
         switch (v.getId()) {
             case R.id.all: {
 //                foods = new ArrayList<FoodItem>(State.foods);;

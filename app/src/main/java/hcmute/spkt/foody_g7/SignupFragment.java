@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,7 @@ public class SignupFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        Log.d("mytag", "SignupFragment");
         db = new Database(getActivity());
     }
 
@@ -104,7 +106,8 @@ public class SignupFragment extends Fragment {
                     Toast.makeText(getActivity(), "Username have existed, please choose another one", Toast.LENGTH_LONG).show();
                 }else{
                     user=new Users(userName.getText().toString(),rePassword.getText().toString(),phone.getText().toString(),address.getText().toString());
-                    createUser(user);
+//                    createUser(user);
+                   db.addUser(user);
                     Toast.makeText(getActivity(), "Successful account registration", Toast.LENGTH_LONG).show();
                     replaceFragment(new SignInFragment());
 
@@ -121,7 +124,7 @@ public class SignupFragment extends Fragment {
     }
     private Boolean checkUserName(String username){
 
-        Cursor cursor =db.getData("SELECT * FROM User WHERE username='"+username+"'");
+        Cursor cursor =db.getData("SELECT * FROM Users WHERE username='"+username+"'");
         if(cursor.getCount()>0){
             return true;
         }else {
@@ -129,7 +132,7 @@ public class SignupFragment extends Fragment {
         }
     }
     private void createUser (Users user){
-        String query="INSERT INTO Users VALUES(null,'"+user.getUsername()+"','"+user.getPassword()+"','"+user.getPhone()+"','"+user.getAddress()+"')";
+        String query="INSERT INTO Users VALUES(null,'"+user.getUsername()+"','"+user.getPassword()+"'null,'"+user.getPhone()+"','"+user.getAddress()+"')";
         db.queryData(query);
     }
     private void replaceFragment(Fragment fragment) {

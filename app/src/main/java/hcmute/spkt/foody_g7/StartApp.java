@@ -6,16 +6,16 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import hcmute.spkt.foody_g7.databinding.ActivityStartAppBinding;
 
 public class StartApp extends AppCompatActivity {
     ActivityStartAppBinding binding;
-    Database db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        db=new Database(this);
+
 //        setContentView(R.layout.activity_start_app);
 //        replaceFragment(new SignInFragment());
         binding= ActivityStartAppBinding.inflate(getLayoutInflater());

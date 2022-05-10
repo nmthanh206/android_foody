@@ -57,7 +57,10 @@
         android:layout_below="@+id/eRePassword"
         android:layout_marginTop="20dp"
         android:hint="Phone number"
-        android:minHeight="48dp" />
+        android:lines="1"
+        android:maxLines="1"
+        android:minHeight="48dp"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/eAddress"
@@ -66,7 +69,10 @@
         android:layout_below="@+id/ePhone"
         android:layout_marginTop="20dp"
         android:hint="Address"
-        android:minHeight="48dp" />
+        android:lines="1"
+        android:maxLines="1"
+        android:minHeight="48dp"
+        android:singleLine="true" />
 
     <Button
         android:id="@+id/btnSignUp"
